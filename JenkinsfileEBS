@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        // You need to change region,access key and secret key of yours
         AWS_REGION = 'us-east-2'
         AWS_ACCESS_KEY_ID = credentials('your-aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('your-aws-secret-access-key')
@@ -14,6 +15,7 @@ pipeline {
     stages {
        stage('Checkout') {
             steps {
+                // Change the github repo into your
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Vennilavan12/ebs.git']])
             }
         }
@@ -39,6 +41,7 @@ pipeline {
 
         stage('Deploy to Elastic Beanstalk') {
             steps {
+                // Change the crendentialId into your id on jenkins credentials stored
                 withCredentials([
                     [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']
                 ]) {
