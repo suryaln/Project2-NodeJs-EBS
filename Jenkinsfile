@@ -48,8 +48,8 @@ pipeline {
                     script {
                     // Deploy the application to Elastic Beanstalk
                         sh "aws s3 cp $SOURCE_BUNDLE_NAME s3://$S3_BUCKET/$SOURCE_BUNDLE_NAME"
-                        sh "aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $BUILD_NUMBER --source-bundle S3Bucket=$S3_BUCKET,S3Key=$SOURCE_BUNDLE_NAME"
-                        sh "aws elasticbeanstalk update-environment --application-name $APPLICATION_NAME --environment-name $ENVIRONMENT_NAME --version-label $BUILD_NUMBER"
+                        sh "aws elasticbeanstalk create-application-version --application-name $APPLICATION_NAME --version-label $BUILD_NUMBER --source-bundle S3Bucket=$S3_BUCKET,S3Key=$SOURCE_BUNDLE_NAME --region $AWS_REGION"
+                        sh "aws elasticbeanstalk update-environment --application-name $APPLICATION_NAME --environment-name $ENVIRONMENT_NAME --version-label $BUILD_NUMBER --region $AWS_REGION"
                     }   
                 }
             }
