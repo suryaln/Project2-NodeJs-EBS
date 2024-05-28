@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // You need to change region,access key and secret key of yours
+        // You need to change region,access key and secret key of yours ,
         AWS_REGION = 'ap-south-1'
        //AWS_ACCESS_KEY_ID = credentials('')
         //AWS_SECRET_ACCESS_KEY = credentials('')
